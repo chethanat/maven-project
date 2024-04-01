@@ -4,7 +4,7 @@ pipeline{
     stage('Read YAML File') {
       steps{
         script{
-          def yamlData = readYaml(file: '${workspaceDir}/${test.yml}')
+          def yamlData = readYaml(file: 'test.yml')
           echo yamlData.input
           def currentDir = pwd()
           echo "Directory: ${currentDir}"
