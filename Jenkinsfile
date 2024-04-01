@@ -4,7 +4,10 @@ pipeline{
     stage('Read YAML File') {
       steps{
         script{
-          echo "Hello world"
+          def yamlData = readYaml(file: 'test.yml')
+          if (yamlData.input == true){
+            mvn clean
+          }
         }
       }
     }
