@@ -3,7 +3,7 @@ pipeline{
   stages {
     stage('Read YAML File') {
       steps{
-        scripts{
+        script{
         }
       }
     }
