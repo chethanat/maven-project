@@ -6,6 +6,8 @@ pipeline{
         script{
           def yamlData = readYaml(file: 'test.yml')
           echo yamlData.input
+          def currentDir = pwd()
+          echo "Directory: ${currentDir}"
           if (yamlData.input == true){
             mvn clean
           }
