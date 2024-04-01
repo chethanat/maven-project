@@ -4,6 +4,7 @@ pipeline{
     stage('Read YAML File') {
       steps{
         script{
+          echo "Hello world"
         }
       }
     }
