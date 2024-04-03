@@ -4,7 +4,7 @@ import subprocess
 
 def execute_maven(pipeline):
     if pipeline:
-        subprocess.run(['mvn', 'clean'])
+        print("Running maven")
     else:
         print("Pipeline parameter is set to False")
 
