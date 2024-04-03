@@ -1,12 +1,20 @@
 pipeline{
   agent any
   stages {
-    stage('Read YAML File') {
+    stage('Build') {
       steps{
         script{
-          sh 'python maven.py'
+          echo "Build stage"
         }
       }
     }
+     stage('Test') {
+      steps{
+        script{
+          echo "Test stage"
+        }
+      }
+    }
+    
   }
 }
