@@ -4,14 +4,14 @@ pipeline{
     stage('Build') {
       steps{
         script{
-          echo "Build stage"
+          bat "mvn clean"
         }
       }
     }
      stage('Test') {
       steps{
         script{
-          echo "Test stage"
+          bat "mvn package"
         }
       }
     }
