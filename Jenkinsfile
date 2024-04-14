@@ -15,6 +15,15 @@ pipeline{
         }
       }
     }
+    stage('archieve') {
+      input{
+        message "want to archieve"
+        ok "Yes"
+      }
+      steps{
+        archiveArtifacts artifacts: "**/*.war"
+      }
+    }
     
   }
 }
