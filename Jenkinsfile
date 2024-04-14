@@ -8,13 +8,6 @@ pipeline{
         }
       }
     }
-     stage('Test') {
-      steps{
-        script{
-          bat "mvn package"
-        }
-      }
-    }
     stage('archieve') {
       input{
         message "want to archieve"
