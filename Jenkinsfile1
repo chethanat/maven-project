@@ -8,12 +8,12 @@ pipeline{
         }
       }
     }
-    stage('archieve')
+    stage('archieve'){
       steps{
         script{
           echo "archieve"
       }
     }
-    
+    }
   }
 }
