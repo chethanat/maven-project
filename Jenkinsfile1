@@ -15,5 +15,30 @@ pipeline{
       }
     }
     }
-  }
+    stage('Deploy to dev'){
+     when {
+       branch 'dev'
+     }
+     steps {
+       echo 'deploy to dev'
+    }
+}
+    stage('Deploy to master'){
+     when {
+       branch 'master'
+     }
+     steps {
+       echo 'deploy to master'
+    }
+}
+   stage('Deploy to release'){
+     when {
+       branch 'release'
+     }
+     steps {
+       echo 'deploy to release '
+    }
+}
+  
+}
 }
