@@ -1,23 +1,20 @@
 pipeline{
   agent any
   stages {
-    stage('Build') {
+    stage('Checkout') {
       steps{
-        script{
-          bat "mvn clean"
-        }
+       git 'https://github.com/chethanat/maven-project.git'
       }
     }
-    stage('Package') {
+    stage('Merge') {
       steps{
         script{
-          bat "mvn package"
+          def commits = sh(returnStdout: true, script: 'git log --pretty=%s ${env.BRANCH_NAME}..origin/dev').trim()
+          if (commits.contains('Merge pull request') || commits.contains('Merge branch')){
+            echo 'Feature brnch has been merged into dev'
         }
-      }
-    }
-    stage('archieve') {
-      steps{
-        archiveArtifacts artifacts: "**/*.jar"
+         else{
+            echo 'Feature branch has not been merged'
       }
     }
     
