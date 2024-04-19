@@ -1,0 +1,18 @@
+pipeline{
+  agent any
+  stages {
+    stage('Build') {
+      steps{
+        script{
+          bat "mvn clean"
+        }
+      }
+    }
+    stage('archieve') {
+      steps{
+        archiveArtifacts artifacts: "**/*.jar"
+      }
+    }
+    
+  }
+}
