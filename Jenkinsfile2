@@ -1,0 +1,22 @@
+pipeline{
+  agent any
+  stages {
+    stage('Checkout') {
+      steps{
+       git 'https://github.com/chethanat/maven-project.git'
+      }
+    }
+    stage('Merge') {
+      steps{
+        script{
+          def commits = sh(returnStdout: true, script: 'git log --pretty=%s ${env.BRANCH_NAME}..origin/dev').trim()
+          if (commits.contains('Merge pull request') || commits.contains('Merge branch')){
+            echo 'Feature brnch has been merged into dev'
+        }
+         else{
+            echo 'Feature branch has not been merged'
+      }
+    }
+    
+  }
+}
