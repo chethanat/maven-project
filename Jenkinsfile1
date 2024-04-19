@@ -18,6 +18,13 @@ pipeline{
       }
     }
     }
+     stage('test'){
+      steps{
+        script{
+          echo "test"
+      }
+    }
+    }
     stage('Deploy to dev'){
      when {
        branch 'dev'
