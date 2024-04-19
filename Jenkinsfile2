@@ -7,6 +7,9 @@ pipeline{
       }
     }
     stage('Merge') {
+        when {
+            branch 'dev'
+      }
       steps{
         script{
           def commits = sh(returnStdout: true, script: 'git log --pretty=%s ${env.BRANCH_NAME}..origin/dev').trim()
