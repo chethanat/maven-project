@@ -4,7 +4,7 @@ pipeline{
     stage('Merge') {
       steps{
         script{
-          def mergeCount = sh(script: 'git log --merges --oneline origin/dev..origin/feature | wc -l', returnStatus: true)
+          def mergeCount = C:\Program Files\Git\bin sh(script: 'git log --merges --oneline origin/dev..origin/feature | wc -l', returnStatus: true)
           if (mergeCount == 0) {
             echo "No merge detected"
         }else{
