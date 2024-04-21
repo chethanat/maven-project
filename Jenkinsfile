@@ -1,22 +1,24 @@
 pipeline{
   agent any
+  triggers{
+    pollSCM('* * * * *')
+  }
   stages {
-    stage('Build') {
+    stage('Merge') {
+      when{
+        changeset '1'
+      }
       steps{
         script{
-          bat "mvn clean"
-        }
+          checkout scm
+          def isMerged = bat(script: 'git log --merges --oneline origin/dev..origin/feature', returnStatus: true)
+          if (isMerged == 0) {
+            echo "Deploy to dev"
+        }else{
+            echo "No merge detected"
       }
     }
-    stage('archieve') {
-      input{
-        message "want to archieve"
-        ok "Yes"
-      }
-      steps{
-        archiveArtifacts artifacts: "**/*.war"
       }
     }
-    
   }
 }
