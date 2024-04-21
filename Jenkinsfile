@@ -1,22 +1,26 @@
 pipeline{
   agent any
+  triggers{
+    pollSCM('* * * * *')
+  }
   stages {
-    stage('Build') {
+    stage('check for new') {
+      when{
+        changeset '**'
+      }
       steps{
         script{
-          bat "mvn clean"
-        }
+          checkout scm
+          def devCommit = bat(script: 'git rev-parse origin/dev', returnStdout: true).trim()
+          def releaseCommit = bat(script: 'git rev-parse origin/release', returnStdout: true).trim()
+          if (devCommit != releaseCommit) {
+            echo "new commits found"
+          }
+          else{
+            echo "No new commits"
       }
     }
-    stage('archieve') {
-      input{
-        message "want to archieve"
-        ok "Yes"
-      }
-      steps{
-        archiveArtifacts artifacts: "**/*.war"
       }
     }
-    
   }
 }
