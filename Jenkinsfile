@@ -6,6 +6,9 @@ pipeline{
   }
   stages {
     stage('Merge') {
+      when{
+        changeset '1'
+      }
       environment {
         PATH_TO_BASH = 'C:\\Program Files\\Git\\bin'
       }
