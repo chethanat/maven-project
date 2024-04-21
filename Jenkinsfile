@@ -10,9 +10,9 @@ pipeline{
     stage('Merge') {
       steps{
         script{
-          def branches = git branch: '', poll: false
-          def isMerged = branches.contains('origin/feature')
-          if (isMerged) {
+          sh 'git fetch origin'
+          def mergeInfo = sh(script: 'git log --merges --oneline origin/dev..origin/feature', returnStatus: true)
+          if (mergeInfo == 0) {
             echo "Deploy to dev"
         }else{
             echo "No merge detected"
