@@ -6,7 +6,7 @@ pipeline{
   stages {
     stage('Merge') {
       when{
-        changeset '1'
+        changeset '**'
       }
       steps{
         script{
