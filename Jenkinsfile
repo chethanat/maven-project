@@ -8,10 +8,12 @@ pipeline{
       }
     }
     stage('Merge') {
+      environment {
+        PATH_TO_BASH = tool 'C:\Program Files\Git\bin'
       steps{
         script{
           sh 'git fetch origin'
-          def mergeInfo = sh(script: 'git log --merges --oneline origin/dev..origin/feature', returnStatus: true)
+          def mergeInfo = sh(script: "${PATH_TO_BASH} -c 'git log --merges --oneline origin/dev..origin/feature'", returnStatus: true)
           if (mergeInfo == 0) {
             echo "Deploy to dev"
         }else{
