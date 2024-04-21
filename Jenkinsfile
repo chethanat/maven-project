@@ -9,7 +9,7 @@ pipeline{
       steps{
         script{
           checkout scm
-          def isMerged = bat(script: "\"${PATH_TO_BASH}\\git.exe\" log --merged --oneline origin/dev..origin/feature", returnStatus: true)
+          def isMerged = bat(script: "\"${PATH_TO_BASH}\\git.exe\" log --merges --oneline origin/dev..origin/feature", returnStatus: true)
           if (isMerged == 0) {
             echo "Deploy to dev"
         }else{
