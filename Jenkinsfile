@@ -9,7 +9,7 @@ pipeline{
     }
     stage('Merge') {
       environment {
-        PATH_TO_BASH = 'C:\Program Files\Git\bin'
+        PATH_TO_BASH = 'C:\\Program Files\\Git\\bin'
       steps{
         script{
           checkout scm
