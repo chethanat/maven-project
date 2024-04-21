@@ -14,7 +14,8 @@ pipeline{
           def isMerged = bat(script: 'git log --merges --oneline origin/dev..origin/feature', returnStatus: true)
           if (isMerged == 0) {
             echo "Deploy to dev"
-        }else{
+          }
+          else{
             echo "No merge detected"
       }
     }
