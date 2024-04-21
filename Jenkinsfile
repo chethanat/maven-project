@@ -9,12 +9,12 @@ pipeline{
     }
     stage('Merge') {
       environment {
-        PATH_TO_BASH = tool 'C:\Program Files\Git\bin'
+        PATH_TO_BASH = 'C:\Program Files\Git\bin'
       steps{
         script{
-          sh 'git fetch origin'
-          def mergeInfo = sh(script: "${PATH_TO_BASH} -c 'git log --merges --oneline origin/dev..origin/feature'", returnStatus: true)
-          if (mergeInfo == 0) {
+          checkout scm
+          def isMerged = bat(script: "\"${PATH_TO_BASH}\\git.exe\" log --merged --oneline origin/dev..origin/feature", returnStatus: true)
+          if (isMerged == 0) {
             echo "Deploy to dev"
         }else{
             echo "No merge detected"
