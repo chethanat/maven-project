@@ -13,11 +13,11 @@ pipeline{
           checkout scm
           def devCommit = bat(script: 'git rev-parse origin/dev', returnStdout: true).trim()
           def releaseCommit = bat(script: 'git rev-parse origin/release', returnStdout: true).trim()
-          if (devCommit != releaseCommit) {
-            echo "new commits found"
+          if (devCommit == releaseCommit) {
+            echo "deploy to dev"
           }
           else{
-            echo "No new commits"
+            echo "No merges"
       }
     }
       }
