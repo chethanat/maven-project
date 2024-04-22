@@ -12,7 +12,7 @@ pipeline{
         script{
           checkout scm
           def isMerged = bat(script: 'git log --merges --oneline -- first-parent origin/dev..origin/feature', returnStdout: true).trim().split('\n')
-          if (mergeCommits.size() > 0) {
+          if (isMerged.size() > 0) {
             echo "Deploy to dev"
           }
           else{
