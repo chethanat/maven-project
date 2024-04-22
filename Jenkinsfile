@@ -11,7 +11,7 @@ pipeline{
       steps{
         script{
           checkout scm
-          def isMerged = bat(script: 'git log --merges --oneline origin/dev..origin/feature', returnStatus: true)
+          def isMerged = bat(script: 'git log --merges --oneline origin/dev..origin/feature', returnStdout: true)
           if (isMerged == 1) {
             echo "Deploy to dev"
           }
