@@ -12,7 +12,7 @@ pipeline{
         script{
           checkout scm
           def isMerged = bat(script: 'git log --merges --oneline origin/dev..origin/feature', returnStatus: true)
-          if (isMerged == 0) {
+          if (isMerged == 1) {
             echo "Deploy to dev"
           }
           else{
